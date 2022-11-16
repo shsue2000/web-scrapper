@@ -1,2 +1,2 @@
 # web-scrapper
-simple webscrapper with nodejs
+webscrapper with nodejs from online tutorial
