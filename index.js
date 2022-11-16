@@ -2,11 +2,16 @@ const PORT = 8000
 const axios = require('axios')
 const cheerio = require('cheerio')
 const express = require('express')
-
+const cors = require('cors')
 const app = express();
+app.use(cors())
 const url = 'https://www.theguardian.com/uk'
+app.get('/', function(req, res) {
+    res.json('Webscrapper')
+})
 
-axios(url)
+app.get('/results', (req, res)=> {
+    axios(url)
     .then(response => {
         const html = response.data
         //console.log(html)
@@ -22,7 +27,10 @@ axios(url)
                 url
             })
         })
-        console.log(articles)
+        res.json(articles)
     }).catch(err => console.log(err))
+})
+
+
 
 app.listen(PORT, () => console.log(`server running on PORT ${PORT}`))
